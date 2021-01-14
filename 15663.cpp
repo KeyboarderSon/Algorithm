@@ -1,70 +1,49 @@
 #include <iostream>
 #include <algorithm>
-#include <string>
-#include <set>
-#include <vector>
-
 using namespace std;
 
-int num, M;
+int N, M;
 int arr[8];
-vector<int>V;
-set<string>Visit;
+int ans[8];
 bool check[8]={false,};
 
-
-bool Duplicate()
-{
-    string str = "";
-    for (int i = 0; i < V.size(); i++){
-        char A = V[i] + '0';
-        str = str + A;
+void Print(){
+    for(int i=0;i<M;i++){
+        cout<<ans[i]<<" ";
     }
- 
-    if (Visit.find(str) == Visit.end()){
-        Visit.insert(str);
-        return false;
-    }
-    else return true;
+    cout<<"\n";
 }
-
-
-
 
 void deep(int depth){
     if(depth==M){
-        if(!Duplicate()){
-            for(int i=0;i<V.size();i++){
-                cout<<V[i]<<" ";
-            }
-            cout<<"\n";
-            
-        }
+        Print();
         return;
     }
-    else{
-        for(int i=0;i<num;i++){
-            if(!check[i]){
-                check[i]=true;
-                V.push_back(arr[i]);
-                deep(depth+1);
-                check[i]=false;
-                V.pop_back();
-            }
-        
-        }
+    int prev=0;
+    
+    for(int i=0; i<N; i++){
+        if(!check[i]&&prev!=arr[i]){
+            check[i]=true;
+            ans[depth]=arr[i];
+            deep(depth+1);
+            prev=arr[i];
+            check[i]=false;
+        }    
     }
+        
+        
+    
 }
 
-int main()
-{
-    cin>>num>>M;
-    int n;
-    int idx=0;
-    for(int i=0;i<num;i++){
+
+int main(){
+    cin>>N>>M;
+    for(int i=0;i<N;i++){
         cin>>arr[i];
     }
-    sort(arr, arr+num);
+    
+    sort(arr, arr+N);
+    
     deep(0);
 
     return 0;
