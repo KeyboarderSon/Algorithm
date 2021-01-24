@@ -8,7 +8,11 @@ int main()
     int arr[16];
     int n;
     cin>>n;
-
+    if(n%2==1) {
+        cout<<"0";
+        return 0;   
+    }
+    
     arr[1]=3;
     arr[2]=11;
     
