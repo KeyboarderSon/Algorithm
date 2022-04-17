@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdio>
+#include <queue>
 
 using namespace std;
 
@@ -46,6 +48,33 @@ void bfs(int i, int n){
     
     return;
 }
+
+
+/*
+ *
+ * Queue 사용해서 bfs
+ *
+ **/
+void bfs_q(int cur, int N){
+    queue<int>q;
+    q.push(cur);
+    b_visited[cur]=1;
+    while(!q.empty()){
+        cur = q.front();
+        q.pop();
+        printf("%d ", cur);
+        for(int i=1; i<=N; i++){
+            if(!b_visited[i] && map[cur][i]){
+                q.push(i);
+                b_visited[i]=1;
+            }
+        }
+        
+    }
+}
+
+
+
 
 
 
