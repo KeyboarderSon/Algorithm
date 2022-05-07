@@ -1,6 +1,6 @@
-#코딩테스트 TIP 정리
+# 코딩테스트 TIP 정리
 
-##1. 재귀문제
+## 1. 재귀문제
 ```python
 import sys
 sys.setrecursionlimit(10**6)
